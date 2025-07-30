@@ -1,24 +1,17 @@
 from typing import List, Any
-
 from fastapi import FastAPI
-from modal import chatting
-from pydantic import BaseModel
+from modal import ScreeningAgent
+from schema import Message
+
+
 
 app = FastAPI()
 
 
-class Message(BaseModel):
-    job_description: str
-    job_title: str
-    total_question: int = 4
-
-
-class Output(BaseModel):
-    response: str
 
 
 @app.post("/chat")
 def chat_function(msg: Message):
-    data = chatting(msg)
-    data = Output(**data)
+    data = ScreeningAgent(msg)
+    data = data.chat(msg.user_message)
     return data

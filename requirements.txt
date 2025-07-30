@@ -2,3 +2,7 @@ fastapi[standard]
 langchain
 langchain_google_genai
 streamlit
+tavily-python
+langchain-openai
+langchain_community
+langchain_tavily
